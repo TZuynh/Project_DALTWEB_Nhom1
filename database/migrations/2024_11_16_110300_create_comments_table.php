@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('role_id')->constrained('roles');
-            $table->string('fullname')->nullable();
-            $table->string('username')->nullable();
-            $table->string('password')->nullable();
-            $table->rememberToken();
+            $table->foreignId('product_detail_id')->constrained('product_details');
+            $table->foreignId('user_id')->constrained('users');
+            $table->integer('star_rate')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('comments');
     }
 };
