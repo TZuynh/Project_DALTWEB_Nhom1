@@ -21,6 +21,8 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard/edit', [DashboardController::class, 'edit'])->name('admin.dashboard.edit');
+    Route::put('/dashboard/update', [DashboardController::class, 'update'])->name('admin.dashboard.update');
 });
 
 Route::prefix('admin')->group(function () {
