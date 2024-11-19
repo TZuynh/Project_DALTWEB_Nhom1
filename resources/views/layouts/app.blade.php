@@ -15,6 +15,12 @@
     <!-- Icons CSS -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+    <!-- vendor css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
     <style id="apexcharts-css">@keyframes opaque {
            0% {
                opacity: 0
@@ -637,6 +643,12 @@
 
 <!-- Widgets Init Js -->
 <script src="{{ asset('assets/js/pages/analytics-dashboard.init.js') }}"></script>
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha384-FPeSrlLZ8JovkJlY1eoF8vD3vBuiWoflqKa4+rFbEzpB93hkoXgm/c8KFwaM4z3x" crossorigin="anonymous"></script>
 
 <!-- Hidden SVG (optional, used for custom functionality) -->
 <svg id="SvgjsSvg1763" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;">
