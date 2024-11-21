@@ -140,7 +140,7 @@
                 <div id="image-preview" class="mt-3">
                     @if (isset($productDetail) && $productDetail->images->count() > 0)
                         @foreach ($productDetail->images as $image)
-                            <img src="{{ asset('storage/img/add/' . $image->url) }}" class="img-thumbnail" alt="Hình ảnh sản phẩm">
+                            <img src="{{ asset('public/img/add/' . $image->url) }}" class="img-thumbnail" alt="Hình ảnh sản phẩm">
                         @endforeach
                     @endif
                 </div>

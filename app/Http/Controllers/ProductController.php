@@ -48,9 +48,10 @@ public function capNhat($id)
     return view('product.update', compact('product', 'categories', 'sizes', 'colors', 'productDetail'));
 }
 
+
+
 public function xuLyCapNhat(Request $request, $id)
 {
-    // Xác thực dữ liệu đầu vào
     $request->validate([
         'category_id' => 'required|integer|exists:categories,id',
         'name' => 'required|string|max:255',
@@ -58,9 +59,8 @@ public function xuLyCapNhat(Request $request, $id)
         'description' => 'nullable|string',
         'size_id' => 'required|integer|exists:sizes,id',
         'color_id' => 'required|integer|exists:colors,id',
-        'quality' => 'required|numeric|min:1',  // Thêm xác thực cho số lượng
         'images' => 'nullable|array',
-        'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // 'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
     // Tìm sản phẩm theo id
@@ -76,16 +76,18 @@ public function xuLyCapNhat(Request $request, $id)
 
     // Cập nhật hoặc tạo mới chi tiết sản phẩm
     $productDetail = ProductDetail::updateOrCreate(
-        ['product_id' => $product->id, 'size_id' => $request->size_id, 'color_id' => $request->color_id],
+        ['product_id' => $product->id],
         [
-            'quality' => $request->quality,  // Cập nhật số lượng
-            'description' => $request->description ?? '', // Cập nhật mô tả
-            'status' => $request->status ?? 0, // Trạng thái mặc định là 0 nếu không có
+            'size_id' => $request->size_id,
+            'color_id' => $request->color_id,
+            'quality' => $request->quality ?? 1,
+            'status' => $request->status ?? 0,
         ]
     );
 
     // Xử lý hình ảnh (nếu có)
     if ($request->hasFile('images')) {
+        ProductImage::where('product_detail_id', $productDetail->id)->delete();
         foreach ($request->file('images') as $image) {
             $imageName = $image->getClientOriginalName();
             $image->storeAs('public/img/add', $imageName);
@@ -94,15 +96,13 @@ public function xuLyCapNhat(Request $request, $id)
             // Lưu URL của ảnh vào bảng images (sản phẩm chi tiết)
             ProductImage::create([
                 'product_detail_id' => $productDetail->id,
-                'url' => $imageUrl,
+                'url' => $imageName,
             ]);
         }
     }
 
-    // Trả về thông báo thành công
     return redirect()->route('product.index')->with('success', "Cập nhật sản phẩm thành công");
 }
-
 
 public function xuLyXoa($id)
 {
@@ -188,7 +188,7 @@ public function xuLyThemMoi(Request $request)
         'size_id' => 'required|exists:sizes,id',
         'color_id' => 'required|exists:colors,id',
         'images' => 'nullable|array',
-        'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // 'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
     // Tạo mới sản phẩm
