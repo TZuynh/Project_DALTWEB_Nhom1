@@ -16,6 +16,7 @@ class Color extends Model
      */
     protected $fillable = [
         'color_name',
+        'hex',
     ];
 
     /**
@@ -23,8 +24,12 @@ class Color extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
+    // public function productDetails()
+    // {
+    //     return $this->hasMany(ProductDetail::class);
+    // }
     public function productDetails()
     {
-        return $this->belongsToMany(ProductDetail::class, 'product_detail_color');
+        return $this->hasMany(ProductDetail::class); // Một color có thể có nhiều product_detail
     }
 }

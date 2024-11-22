@@ -25,6 +25,6 @@ class PaymentMethod extends Model
      */
     public function payments()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class, 'payment_method_id', 'id');
     }
 }
