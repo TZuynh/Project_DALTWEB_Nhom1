@@ -22,70 +22,14 @@
     <!-- Icons CSS -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
 
-<<<<<<< Updated upstream
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
     <!-- vendor css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-    <style id="apexcharts-css">@keyframes opaque {
-           0% {
-               opacity: 0
-           }
-
-           to {
-               opacity: 1
-           }
-       }
-
-        @keyframes resizeanim {
-            0%,to {
-                opacity: 0
-            }
-        }
-
-        .apexcharts-canvas {
-            position: relative;
-            user-select: none
-        }
-
-        .apexcharts-canvas ::-webkit-scrollbar {
-            -webkit-appearance: none;
-            width: 6px
-        }
-
-        .apexcharts-canvas ::-webkit-scrollbar-thumb {
-            border-radius: 4px;
-            background-color: rgba(0,0,0,.5);
-            box-shadow: 0 0 1px rgba(255,255,255,.5);
-            -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5)
-        }
-
-        .apexcharts-inner {
-            position: relative
-        }
-
-        .apexcharts-text tspan {
-            font-family: inherit
-        }
-
-        .legend-mouseover-inactive {
-            transition: .15s ease all;
-            opacity: .2
-        }
-
-        .apexcharts-legend-text {
-            padding-left: 15px;
-            margin-left: -15px;
-        }
-
-        .apexcharts-series-collapsed {
-=======
     <style id="apexcharts-css">
     @keyframes opaque {
         0% {
->>>>>>> Stashed changes
             opacity: 0
         }
 
@@ -93,6 +37,60 @@
             opacity: 1
         }
     }
+
+    @keyframes resizeanim {
+
+        0%,
+        to {
+            opacity: 0
+        }
+    }
+
+    .apexcharts-canvas {
+        position: relative;
+        user-select: none
+    }
+
+    .apexcharts-canvas ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 6px
+    }
+
+    .apexcharts-canvas ::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, .5);
+        box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+        -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5)
+    }
+
+    .apexcharts-inner {
+        position: relative
+    }
+
+    .apexcharts-text tspan {
+        font-family: inherit
+    }
+
+    .legend-mouseover-inactive {
+        transition: .15s ease all;
+        opacity: .2
+    }
+
+    .apexcharts-legend-text {
+        padding-left: 15px;
+        margin-left: -15px;
+    }
+
+    /* .apexcharts-series-collapsed {
+            <style id="apexcharts-css">@keyframes opaque {
+                0% {
+                    opacity: 0
+                }
+
+                to {
+                    opacity: 1
+                }
+            } */
 
     @keyframes resizeanim {
 
@@ -991,7 +989,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <!-- Bootstrap -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha384-FPeSrlLZ8JovkJlY1eoF8vD3vBuiWoflqKa4+rFbEzpB93hkoXgm/c8KFwaM4z3x" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"
+    integrity="sha384-FPeSrlLZ8JovkJlY1eoF8vD3vBuiWoflqKa4+rFbEzpB93hkoXgm/c8KFwaM4z3x" crossorigin="anonymous">
+</script>
 
 <!-- Hidden SVG (optional, used for custom functionality) -->
 <svg id="SvgjsSvg1763" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1"
