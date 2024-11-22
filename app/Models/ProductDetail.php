@@ -83,10 +83,10 @@ class ProductDetail extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    // public function images()
-    // {
-    //     return $this->hasMany(ProductImage::class);
-    // }
+     public function images()
+     {
+         return $this->hasMany(ProductImage::class);
+     }
 
     public function productImages()
     {
