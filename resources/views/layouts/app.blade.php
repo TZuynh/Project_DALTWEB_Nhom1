@@ -1,6 +1,6 @@
 <html lang="en"><!-- Mirrored from zoyothemes.com/silva/html/analytics by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 16 Nov 2024 03:54:30 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=UTF-8"><!-- /Added by HTTrack -->
     <meta charset="utf-8">
-    <title>Dashboard</title>
+    <title>Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
     <meta name="author" content="Zoyothemes">
