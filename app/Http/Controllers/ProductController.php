@@ -148,7 +148,35 @@ public function xuLyXoa($id)
     return redirect()->route('product.index')->with('success', 'Sản phẩm đã được xóa thành công');
 }
 
+public function addProductDetails(Request $request, $productId)
+{
+    // Lấy sản phẩm dựa vào ID
+    $product = Product::findOrFail($productId);
 
+    // Tổng số lượng của sản phẩm
+    $totalQuantity = $product->quantity; // Giả sử trường `quantity` lưu tổng số lượng sản phẩm
+
+    // Chi tiết được gửi từ client
+    $details = $request->input('details'); // Mảng chi tiết: size, màu, số lượng
+
+    // Kiểm tra tổng số lượng chi tiết
+    $sumDetailsQuantity = array_sum(array_column($details, 'quantity'));
+    if ($sumDetailsQuantity > $totalQuantity) {
+        return response()->json(['error' => 'Tổng số lượng chi tiết vượt quá số lượng sản phẩm.'], 400);
+    }
+
+    // Lặp qua các chi tiết và lưu vào bảng product_details
+    foreach ($details as $detail) {
+        ProductDetail::create([
+            'product_id' => $product->id,
+            'size' => $detail['size'],
+            'color' => $detail['color'],
+            'quantity' => $detail['quantity'],
+        ]);
+    }
+
+    return response()->json(['message' => 'Chi tiết sản phẩm đã được thêm thành công!']);
+}
 
 
 
@@ -158,6 +186,7 @@ public function chiTiet($id)
 
     // Lấy loại sản phẩm
     $category = $product->category;
+    $dsDetail = $product->productDetails;
 
     // Lấy danh sách chi tiết sản phẩm (sắp xếp theo size_id)
     $dsChiTietSP = ProductDetail::where('product_id', $id)
@@ -168,7 +197,7 @@ public function chiTiet($id)
     $tongSoLuong = $dsChiTietSP->sum('quality');  // Thay 'quality' thành 'quantity'
 
     // Trả về view 'product.detail' với các biến compact
-    return view('product.detail', compact('product', 'category', 'dsChiTietSP', 'tongSoLuong'));
+    return view('product.detail', compact('product', 'category', 'dsChiTietSP', 'tongSoLuong','dsDetail'));
 }
 
 
@@ -246,4 +275,14 @@ public function timKiem(Request $request)
         return view('product.index', compact('dsProducts'));
     }
 
+
+    public function show($productId)
+    {
+        $product = Product::findOrFail($productId);
+        // Eager load the product details to include the quantity field
+        $dsDetail = $product->productDetails;
+    
+        return view('product.details', compact('product', 'dsDetail'));
+    }
+    
 }

@@ -97,63 +97,45 @@
                         <div class="update-product">
       <button class="update-button"> <a href="{{ route('product.update', ['id' => $product->id]) }}"> Cập nhật thông tin
         </a> </button>
+        <div class="detail">
+      <button class="detail"> <a href="{{ route('detail.create', ['product' => $product->id]) }}"> Theem Chi Tiet
+        </a> </button>
+
+        
     </div>
 
                         <!-- start row -->
                         
                         <!-- Task table -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card overflow-hidden">
-                                    <div class="card-header">
-                                        <div class="d-flex align-items-center">
-                                            <h5 class="card-title mb-0 text-black">Thông Số Chi Tiết</h5>
-                                        </div>
-                                    </div>
+                        <div class="table-responsive">
+    <table class="table table-traffic mb-0">
+        <thead>
+            <tr>
+                <th>Size</th>
+                <th>Màu</th>
+                <th>Số Lượng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($dsDetail as $productDetail)
+                <tr>
+                    <td>
+                        <a href="#" class="text-reset">
+                            {{ $productDetail->size->name ?? 'N/A' }}
+                        </a>
+                    </td>
+                    <td class="text-nowrap text-reset">
+                        {{ $productDetail->color->color_name ?? 'N/A' }}
+                    </td>
+                    <td class="text-nowrap">
+                        {{ $productDetail->quality }}
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
-                                    <div class="card-body p-0">
-                                        <div class="table-responsive">
-                                            <table class="table table-traffic mb-0">
-
-                                                <thead>
-                                                    <tr>
-                                                        <th>Size</th>
-                                                        <th>Màu</th>
-                                                        <th>Số Lượng</th>
-                                                        
-                                                    </tr>
-                                                </thead>
-                                                @foreach($dsChiTietSP as $productDetail)
-
-                                               
-                                                 <tr>
-                                                  
-                                                    <td>
-                                                        <a href="#" class="text-reset">                {{ $productDetail->size_id }}
-                                                        </a>
-                                                    </td>
-                                                    <td class="text-nowrap text-reset">
-                                                        <i data-feather="calendar" style="height: 18px; width: 18px;" class="me-1"></i>
-                                                        {{ $productDetail->color_id }}                                                    </td>
-                                                    <td class="text-nowrap">
-                                                        <a href="#" class="text-reset">
-                                                            <i data-feather="check" style="height: 18px; width: 18px;" class="me-1"></i>
-                                                            {{ $productDetail->quality }}
-                                                        </a>
-                                                    </td>
-                                                   
-                                                    
-                                                </tr>
-                                                @endforeach
-
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                     <!-- container-fluid -->
                 </div> <!-- content -->
 
