@@ -148,7 +148,7 @@
                                     </li>
                                     <!-- Quản Lý Sản Phẩm -->
                                     <li class="menuitem-active">
-                                        <a class="tp-link active" href="#">
+                                        <a class="tp-link active" href="{{ route('product.index') }}">
                                             <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
                                                 stroke-width="2" fill="none" stroke-linecap="round"
                                                 stroke-linejoin="round" class="css-i6dzq1">
