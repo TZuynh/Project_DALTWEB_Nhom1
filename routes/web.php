@@ -3,14 +3,10 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Categories\CategoryController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
-<<<<<<< Updated upstream
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailController;
-=======
 use App\Http\Controllers\Admin\OrderManagement\OrderManagementController;
 use App\Http\Controllers\Admin\CommentManagement\CommentManagementController;
->>>>>>> Stashed changes
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,10 +26,8 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-<<<<<<< Updated upstream
     Route::get('/dashboard/edit', [DashboardController::class, 'edit'])->name('admin.dashboard.edit');
     Route::put('/dashboard/update', [DashboardController::class, 'update'])->name('admin.dashboard.update');
-=======
 
     //Huy
     Route::get('/order-management', [OrderManagementController::class, 'index'])->name('admin.ordermanagement');
@@ -43,15 +37,12 @@ Route::middleware('auth')->group(function () {
     Route::post('comments/approve/{commentId}', [CommentManagementController::class, 'approve'])->name('admin.comment.approve');
     Route::post('comments/update/{commentId}', [CommentManagementController::class, 'update'])->name('admin.comment.update');
     // Route::post('comments/delete/{commentId}', [CommentManagementController::class, 'delete'])->name('admin.comment.delete');
-
->>>>>>> Stashed changes
 });
 
 Route::prefix('admin')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('admin.login');
     Route::post('/login', [LoginController::class, 'login'])->name('admin.login.submit');
     Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
-<<<<<<< Updated upstream
 });
 
 
@@ -75,26 +66,16 @@ Route::prefix('product')->group(function () {
 
 
 
-   
+
 });
 Route::prefix('ProductDetail')->group(function () {
-   
+
     Route::get('add-detail/{product}', [ProductDetailController::class, 'create'])->name('product-detail.create');
 
     // Route xử lý lưu chi tiết sản phẩm
     Route::post('/{product}/add-detail', [ProductDetailController::class, 'store'])->name('product-detail.store');
 });
 
-
-
-
-
-
-
-
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('categories', CategoryController::class);
 });
-=======
-});
->>>>>>> Stashed changes
