@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained('orders');
             $table->foreignId('product_detail_id')->constrained('product_details');
-            $table->foreignId('shipment_status_id')->constrained('shipment_statuses');
-            $table->foreignId('voucher_id')->constrained('vouchers');
             $table->integer('price')->nullable();
             $table->integer('quality')->nullable();
             $table->integer('total_value')->nullable();

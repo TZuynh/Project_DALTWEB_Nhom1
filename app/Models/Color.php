@@ -22,14 +22,10 @@ class Color extends Model
     /**
      * Relationship: A Color has many ProductDetails.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    // public function productDetails()
-    // {
-    //     return $this->hasMany(ProductDetail::class);
-    // }
-    public function productDetails()
-    {
-        return $this->hasMany(ProductDetail::class); // Một color có thể có nhiều product_detail
-    }
+     public function products()
+     {
+         return $this->hasMany(Product::class);
+     }
 }

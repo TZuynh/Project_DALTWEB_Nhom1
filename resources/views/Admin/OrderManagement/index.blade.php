@@ -48,7 +48,11 @@
                                                 {{ $order->payment->paymentMethod->name ?? 'Không xác định' }}
                                             </li>
                                             <li><strong>Trạng thái thanh toán:</strong>
-                                                {{ $order->payment->paymentMethod->id != 4 ? 'Đã thanh toán' : 'Chưa thanh toán' }}
+                                                @if($order->payment)
+                                                    {{ $order->payment->paymentMethod->id != 4 ? 'Đã thanh toán' : 'Chưa thanh toán' }}
+                                                @else
+                                                    Chưa thanh toán
+                                                @endif
                                             </li>
                                         </ul>
                                     </td>

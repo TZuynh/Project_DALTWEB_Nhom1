@@ -39,7 +39,7 @@
                                                 src="{{ asset('assets/images/sp/' . $comment->productDetail->productImages) }}"
                                                 alt="Hình ảnh sản phẩm" width="100">
                                             <li><strong>Tên sản phẩm:</strong>
-                                                {{ $comment->productDetail->product->name }}
+                                                {{ $comment->productDetail->product->name ?? 'N/A' }}
                                             </li>
                                             <li><strong>Size:</strong>
                                                 {{ $comment->productDetail->size->name ?? 'N/A' }}
@@ -80,7 +80,7 @@
                                         Active
                                         </div>
                                         @endif
-                                    </td>                      
+                                    </td>
                                     <td class=" align-middle">
                                                 <ul class="list-unstyled m-0 box-custom">
                                                     <li class="border w-auto p-2 mb-2 text-left pointer custom "

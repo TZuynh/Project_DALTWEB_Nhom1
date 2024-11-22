@@ -30,7 +30,6 @@ class ShipmentStatusTableSeeder extends Seeder
             'is_that' => 0,
         ]);
 
-        DB::table('shipment_statuses')->insert($statuses);
         DB::table('shipment_statuses')->insert([
             'status_name' => 'Đang vận chuyển',
             'is_that' => 0,

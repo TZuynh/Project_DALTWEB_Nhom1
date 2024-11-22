@@ -18,11 +18,10 @@ class VoucherTableSeeder extends Seeder
        $vouchers = [
     [
         'voucher_type_id' => 1,
-        'status_name' => 'Active',
         'content' => '10% off on orders above 500K',
         'money_minimum' => 500000,
         'money_discount' => 50000,
-        'quality' => 100,
+        'quantity' => 100,
         'start_date' => Carbon::now()->subDays(10), // Đã bắt đầu và đang hoạt động
         'end_date' => Carbon::now()->addMonths(1), // Kết thúc trong 1 tháng tới
         'status' => 1,
@@ -31,11 +30,10 @@ class VoucherTableSeeder extends Seeder
     ],
     [
         'voucher_type_id' => 2,
-        'status_name' => 'Expired',
         'content' => '15% off for orders above 300K',
         'money_minimum' => 300000,
         'money_discount' => 45000,
-        'quality' => 50,
+        'quantity' => 50,
         'start_date' => Carbon::now()->subYears(1)->subMonths(2), // Bắt đầu từ năm trước
         'end_date' => Carbon::now()->subDays(20), // Đã hết hạn 20 ngày trước
         'status' => 0,
@@ -44,11 +42,10 @@ class VoucherTableSeeder extends Seeder
     ],
     [
         'voucher_type_id' => 1,
-        'status_name' => 'Upcoming',
         'content' => 'Free shipping on orders above 1M',
         'money_minimum' => 1000000,
         'money_discount' => 0,
-        'quality' => 200,
+        'quantity' => 200,
         'start_date' => Carbon::now()->addDays(15), // Sẽ bắt đầu trong 15 ngày tới
         'end_date' => Carbon::now()->addMonths(2), // Kết thúc sau 2 tháng kể từ khi bắt đầu
         'status' => 1,
@@ -57,11 +54,10 @@ class VoucherTableSeeder extends Seeder
     ],
     [
         'voucher_type_id' => 3,
-        'status_name' => 'Active',
         'content' => 'Flat 50K off on all orders',
         'money_minimum' => 0, // Không yêu cầu giá trị tối thiểu
         'money_discount' => 50000,
-        'quality' => 500,
+        'quantity' => 500,
         'start_date' => Carbon::now()->subDays(5), // Đã bắt đầu 5 ngày trước
         'end_date' => Carbon::now()->addMonths(1), // Kết thúc trong 1 tháng tới
         'status' => 1,
@@ -70,11 +66,10 @@ class VoucherTableSeeder extends Seeder
     ],
     [
         'voucher_type_id' => 2,
-        'status_name' => 'Expired',
         'content' => 'Buy 1 Get 1 Free',
         'money_minimum' => 500000,
         'money_discount' => 0, // Áp dụng giảm giá số lượng
-        'quality' => 100,
+        'quantity' => 100,
         'start_date' => Carbon::now()->subYears(1), // Bắt đầu từ năm trước
         'end_date' => Carbon::now()->subMonths(6), // Hết hạn cách đây 6 tháng
         'status' => 0,
@@ -83,11 +78,10 @@ class VoucherTableSeeder extends Seeder
     ],
     [
         'voucher_type_id' => 1,
-        'status_name' => 'Active',
         'content' => '20% off for first-time users',
         'money_minimum' => 300000,
         'money_discount' => 60000,
-        'quality' => 150,
+        'quantity' => 150,
         'start_date' => Carbon::now()->subDays(2), // Đã bắt đầu 2 ngày trước
         'end_date' => Carbon::now()->addDays(20), // Kết thúc trong 20 ngày tới
         'status' => 1,
@@ -104,7 +98,7 @@ class VoucherTableSeeder extends Seeder
                 'content' => 'Voucher mặc định không giảm giá',
                 'money_minimum' => 0,
                 'money_discount' => 0,
-                'quality' => 1000,
+                'quantity' => 1000,
                 'start_date' => '2024-11-01',
                 'end_date' => '2025-11-01',
                 'status' => 1
@@ -114,7 +108,7 @@ class VoucherTableSeeder extends Seeder
                 'content' => 'Giảm 10% cho đơn hàng từ 600,000 VND',
                 'money_minimum' => 600000,
                 'money_discount' => 10, // 10%
-                'quality' => 100,
+                'quantity' => 100,
                 'start_date' => '2024-11-01',
                 'end_date' => '2024-12-31',
                 'status' => 1
@@ -124,7 +118,7 @@ class VoucherTableSeeder extends Seeder
                 'content' => 'Giảm 50,000 VND cho đơn hàng từ 800,000 VND',
                 'money_minimum' => 800000,
                 'money_discount' => 50000, // 50,000 VND
-                'quality' => 100,
+                'quantity' => 100,
                 'start_date' => '2024-11-01',
                 'end_date' => '2024-12-31',
                 'status' => 1
@@ -134,7 +128,7 @@ class VoucherTableSeeder extends Seeder
                 'content' => 'Miễn phí vận chuyển cho đơn hàng từ 600,000 VND',
                 'money_minimum' => 600000,
                 'money_discount' => 0, // Free Shipping (giảm phí vận chuyển)
-                'quality' => 50,
+                'quantity' => 50,
                 'start_date' => '2024-11-01',
                 'end_date' => '2024-12-31',
                 'status' => 1

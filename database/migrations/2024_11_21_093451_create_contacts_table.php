@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Tên
-            $table->string('email'); // Email
-            $table->string('phone'); // Điện thoại
+            $table->string('name')->nullable(); // Tên
+            $table->string('email')->nullable(); // Email
+            $table->string('phone')->nullable(); // Điện thoại
             $table->timestamps(); // created_at và updated_at
         });
     }
