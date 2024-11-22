@@ -90,13 +90,10 @@ class ProductDetail extends Model
 
     public function productImages()
     {
-<<<<<<< Updated upstream
-        return $this->hasMany(ProductImage::class,'product_detail_id');
-=======
-        // Quan hệ với bảng product_images
+        // return $this->hasMany(ProductImage::class, 'product_detail_id');
+        // // Quan hệ với bảng product_images
         return $this->hasMany(ProductImage::class, 'product_id', 'product_id')
             ->where('color_id', $this->color_id);
->>>>>>> Stashed changes
     }
 
     /**
