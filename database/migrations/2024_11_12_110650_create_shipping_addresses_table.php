@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('shipping_addresses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
+            $table->string('email')->nullable();
             $table->string('receiver_name')->nullable();
             $table->string('receiver_phone')->nullable();
             $table->string('city')->nullable();

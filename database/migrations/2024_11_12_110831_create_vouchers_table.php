@@ -14,11 +14,10 @@ return new class extends Migration
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('voucher_type_id')->constrained('voucher_types');
-            $table->string('status_name')->nullable();
             $table->string('content')->nullable();
             $table->integer('money_minimum')->nullable();
             $table->integer('money_discount')->nullable();
-            $table->integer('quality')->nullable();
+            $table->integer('quantity')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->integer('status')->default(0);

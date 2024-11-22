@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('shipment_status_id')->constrained('shipment_statuses');
             $table->foreignId('voucher_id')->constrained('vouchers');
             $table->integer('total_product_value',)->nullable();
-            $table->integer('delivery_change')->nullable();
+            $table->integer('charge')->nullable();
             $table->integer('total_order_value')->nullable();
             $table->timestamps();
         });

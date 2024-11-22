@@ -20,7 +20,7 @@ class Order extends Model
         'shipment_status_id',
         'voucher_id',
         'total_product_value',
-        'delivery_change',
+        'change',
         'total_order_value',
     ];
 
@@ -37,11 +37,11 @@ class Order extends Model
     /**
      * An Order has one ShippingAddress.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function shippingAddress()
     {
-        return $this->hasOne(ShippingAddress::class);
+        return $this->belongsTo(ShippingAddress::class);
     }
 
     /**
@@ -49,9 +49,9 @@ class Order extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function shipmentStatuses()
+    public function shipmentStatus()
     {
-        return $this->hasMany(ShipmentStatus::class);
+        return $this->belongsTo(ShipmentStatus::class);
     }
 
     /**
@@ -67,10 +67,25 @@ class Order extends Model
     /**
      * Relationship: An Order has many Payments.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function payments()
+//     public function payments()
+//     {
+//         return $this->hasMany(Payment::class);
+//     }
+
+    public function payment()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasOne(Payment::class, 'order_id', 'id');
+    }
+
+    public function voucher()
+    {
+        return $this->belongsTo(Voucher::class);
+    }
+
+    public function paymentMethod()
+    {
+        return $this->belongsTo(PaymentMethod::class, 'payment_method_id', 'id');
     }
 }

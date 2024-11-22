@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_images', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('products');
-            $table->foreignId('color_id')->constrained('colors');
-            $table->string('url')->nullable();
-            $table->timestamps();
+            $table->string('name')->nullable(); // Tên
+            $table->string('email')->nullable(); // Email
+            $table->string('phone')->nullable(); // Điện thoại
+            $table->timestamps(); // created_at và updated_at
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_images');
+        Schema::dropIfExists('contacts');
     }
 };

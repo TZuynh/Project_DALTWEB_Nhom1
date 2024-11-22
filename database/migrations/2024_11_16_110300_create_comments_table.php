@@ -16,6 +16,10 @@ return new class extends Migration
             $table->foreignId('product_detail_id')->constrained('product_details');
             $table->foreignId('user_id')->constrained('users');
             $table->integer('star_rate')->nullable();
+            $table->string('content')->nullable();
+            $table->integer('status')->nullable();
+            $table->integer('approve')->nullable();
+            $table->integer('is_hide')->nullable();
             $table->timestamps();
         });
     }

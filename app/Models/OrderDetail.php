@@ -18,7 +18,6 @@ class OrderDetail extends Model
         'order_id',
         'product_detail_id',
         'shipment_status_id',
-        'voucher_id',
         'price',
         'quality',
         'total_value',
@@ -32,5 +31,15 @@ class OrderDetail extends Model
     public function productDetail()
     {
         return $this->belongsTo(ProductDetail::class);
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function shipmentStatus()
+    {
+        return $this->belongsTo(ShipmentStatus::class);
     }
 }
