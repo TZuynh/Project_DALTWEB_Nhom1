@@ -41,7 +41,7 @@ class Order extends Model
      */
     public function shippingAddress()
     {
-        return $this->hasOne(ShippingAddress::class);
+        return $this->belongsTo(ShippingAddress::class);
     }
 
     /**
@@ -49,9 +49,9 @@ class Order extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function shipmentStatuses()
+    public function shipmentStatus()
     {
-        return $this->hasMany(ShipmentStatus::class);
+        return $this->belongsTo(ShipmentStatus::class);
     }
 
     /**
@@ -69,8 +69,18 @@ class Order extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function payments()
+    // public function payments()
+    // {
+    //     return $this->hasMany(Payment::class);
+    // }
+
+    public function payment()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasOne(Payment::class, 'order_id', 'id');
+    }
+
+    public function voucher()
+    {
+        return $this->belongsTo(Voucher::class);
     }
 }

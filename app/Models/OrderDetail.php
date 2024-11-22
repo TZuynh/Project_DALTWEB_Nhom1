@@ -33,4 +33,19 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(ProductDetail::class);
     }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function shipmentStatus()
+    {
+        return $this->belongsTo(ShipmentStatus::class);
+    }
+
+    public function voucher()
+    {
+        return $this->belongsTo(Voucher::class);
+    }
 }

@@ -37,9 +37,15 @@ class ProductDetail extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function sizes()
+    // public function sizes()
+    // {
+    //     return $this->belongsToMany(Size::class, 'product_detail_size');
+    // }
+
+    public function size()
     {
-        return $this->belongsToMany(Size::class, 'product_detail_size');
+        return $this->belongsTo(Size::class);
+        // Một product_detail thuộc về một size
     }
 
     /**
@@ -47,9 +53,9 @@ class ProductDetail extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function colors()
+    public function color()
     {
-        return $this->belongsToMany(Color::class, 'product_detail_color');
+        return $this->belongsTo(Color::class);
     }
 
     /**
@@ -77,9 +83,20 @@ class ProductDetail extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function images()
+    // public function images()
+    // {
+    //     return $this->hasMany(ProductImage::class);
+    // }
+
+    public function productImages()
     {
+<<<<<<< Updated upstream
         return $this->hasMany(ProductImage::class,'product_detail_id');
+=======
+        // Quan hệ với bảng product_images
+        return $this->hasMany(ProductImage::class, 'product_id', 'product_id')
+            ->where('color_id', $this->color_id);
+>>>>>>> Stashed changes
     }
 
     /**
