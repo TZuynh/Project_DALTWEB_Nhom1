@@ -7,6 +7,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\Admin\OrderManagement\OrderManagementController;
 use App\Http\Controllers\Admin\CommentManagement\CommentManagementController;
+use App\Http\Controllers\Admin\Contacts\ContactController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,4 +80,11 @@ Route::prefix('ProductDetail')->group(function () {
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('categories', CategoryController::class);
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
+    Route::get('/contacts/{id}/edit', [ContactController::class, 'edit'])->name('admin.contacts.edit');
+    Route::put('/contacts/{id}', [ContactController::class, 'update'])->name('admin.contacts.update');
+    Route::delete('/contacts/{id}', [ContactController::class, 'destroy'])->name('admin.contacts.destroy');
 });
