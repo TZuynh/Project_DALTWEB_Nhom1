@@ -23,8 +23,12 @@ class Size extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
+    // public function productDetails()
+    // {
+    //     return $this->belongsToMany(ProductDetail::class, 'product_detail_size');
+    // }
     public function productDetails()
     {
-        return $this->belongsToMany(ProductDetail::class, 'product_detail_size');
+        return $this->hasMany(ProductDetail::class); // Một size có thể có nhiều product_detail
     }
 }
