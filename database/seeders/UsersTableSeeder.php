@@ -14,11 +14,24 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            'role_id' => 1,
-            'fullname' => 'Admin User',
-            'username' => 'admin',
-            'password' => Hash::make('Admin@123'),
-        ]);
+        // Kiểm tra nếu Admin chưa tồn tại
+        if (!DB::table('users')->where('username', 'admin')->exists()) {
+            DB::table('users')->insert([
+                'role_id' => 1,
+                'fullname' => 'Admin User',
+                'username' => 'admin',
+                'password' => Hash::make('Admin@123'),
+            ]);
+        }
+
+        // Kiểm tra nếu Khách hàng chưa tồn tại
+        if (!DB::table('users')->where('username', 'customer')->exists()) {
+            DB::table('users')->insert([
+                'role_id' => 2,
+                'fullname' => 'Minh Huy',
+                'username' => 'minhie1510',
+                'password' => Hash::make('Minhie@1510'),
+            ]);
+        }
     }
 }

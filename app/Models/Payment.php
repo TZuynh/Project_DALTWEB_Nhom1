@@ -27,7 +27,7 @@ class Payment extends Model
      */
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class, 'order_id', 'id');
     }
 
     /**
@@ -35,8 +35,9 @@ class Payment extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    // Trong model Payment
     public function paymentMethod()
     {
-        return $this->belongsTo(PaymentMethod::class);
+        return $this->belongsTo(PaymentMethod::class, 'payment_method_id', 'id');
     }
 }
