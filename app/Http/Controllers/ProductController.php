@@ -20,7 +20,6 @@ class ProductController extends Controller
 {
     // Lấy danh sách sản phẩm kèm theo chi tiết và hình ảnh, mỗi trang hiển thị 10 mục
     $dsProducts = Product::with('productDetails.images')->paginate(10);
-
     // Trả về view cùng dữ liệu
     return view('product.index', compact('dsProducts'));
 }
@@ -87,7 +86,7 @@ public function xuLyCapNhat(Request $request, $id)
 
     // Xử lý hình ảnh (nếu có)
     if ($request->hasFile('images')) {
-        ProductImage::where('product_detail_id', $productDetail->id)->delete();
+        ProductImage::where('product_id', $productDetail->id)->delete();
         foreach ($request->file('images') as $image) {
             $imageName = $image->getClientOriginalName();
             $image->storeAs('public/img/add', $imageName);
@@ -95,7 +94,9 @@ public function xuLyCapNhat(Request $request, $id)
 
             // Lưu URL của ảnh vào bảng images (sản phẩm chi tiết)
             ProductImage::create([
-                'product_detail_id' => $productDetail->id,
+                'product_id' => $productDetail->id,
+                'color_id' => $productDetail->color_id,
+
                 'url' => $imageName,
             ]);
         }
@@ -115,7 +116,7 @@ public function xuLyXoa($id)
     }
 
     // Xóa các hình ảnh liên quan đến sản phẩm
-    $productImages = ProductImage::where('product_detail_id', $id)->get(); // Sửa lại dựa trên khóa ngoại
+    $productImages = ProductImage::where('product_id', $id)->get(); // Sửa lại dựa trên khóa ngoại
     foreach ($productImages as $image) {
         // Xóa file hình ảnh trên server
         $imagePath = public_path('storage/img/add/' . $image->url);
@@ -130,7 +131,7 @@ public function xuLyXoa($id)
     $productDetails = ProductDetail::where('product_id', $id)->get(); // Lấy chi tiết sản phẩm
     foreach ($productDetails as $detail) {
         // Xóa các hình ảnh liên quan đến chi tiết sản phẩm này
-        $productDetailImages = ProductImage::where('product_detail_id', $detail->id)->get();
+        $productDetailImages = ProductImage::where('product_id', $detail->id)->get();
         foreach ($productDetailImages as $image) {
             $imagePath = public_path('storage/img/add/' . $image->url);
             if (file_exists($imagePath)) {
@@ -243,7 +244,8 @@ public function xuLyThemMoi(Request $request)
             $imageName = $image->getClientOriginalName();
             $image->storeAs('public/img/add', $imageName);
             ProductImage::create([
-                'product_detail_id' => $productDetail->id,
+                'product_id' => $productDetail->id,
+                'color_id' => $productDetail->color_id,
                 'url' => $imageName,
             ]);
         }
