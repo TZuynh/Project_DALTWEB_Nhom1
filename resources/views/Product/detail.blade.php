@@ -100,6 +100,11 @@
         Cập nhật thông tin
     </a>
 </div>
+<div class="col-md-6 text-end">
+    <a href="{{ route('detail.create', ['product' => $product->id]) }}" class="btn btn-primary" style="margin-bottom: 15px">
+       Them chi tiet
+    </a>
+</div>
                       
       
 
@@ -119,7 +124,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($dsDetail as $productDetail)
+            @foreach($dsChiTietSP as $productDetail)
                 <tr>
                     <td>
                         <a href="#" class="text-reset">

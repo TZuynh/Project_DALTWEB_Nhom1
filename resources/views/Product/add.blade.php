@@ -58,10 +58,7 @@
                             </div>
                         </div>
                         <div class="row">
-    <div class="col-md-8">
-        <label for="quality" class="form-label">Số lượng muốn thêm</label>
-        <input type="number" name="quality" class="form-control" id="quality" min="1" step="1" required>
-    </div>
+    
 </div>
 
 <!--                         
@@ -118,30 +115,10 @@
                         </div> -->
 
                         <!-- Size sản phẩm -->
-                        <div class="row">
-                            <div class="col-md-8">
-                                <label for="size_id" class="form-label">Size sản phẩm</label>
-                                <select name="size_id" class="form-select" id="size_id">
-                                    <option selected>Chọn size sản phẩm</option>
-                                    @foreach($dsSize as $size)
-                        <option value="{{ $size->id }}">{{ $size->name }}</option>
-                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+                        
 
                         <!-- Màu sản phẩm -->
-                        <div class="row">
-                            <div class="col-md-8">
-                                <label for="color_id" class="form-label">Màu sản phẩm</label>
-                                <select name="color_id" class="form-select" id="color_id">
-                                    <option selected>Chọn màu sản phẩm</option>
-                                    @foreach($dsMauSac as $mauSac)
-                        <option value="{{ $mauSac->id }}">{{ $mauSac->color_name }}</option>
-                           @endforeach                            
-                                    </select>
-                            </div>
-                        </div>
+                        
 
                         <!-- Mô tả sản phẩm -->
                         <div class="row">

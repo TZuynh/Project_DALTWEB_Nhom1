@@ -40,7 +40,7 @@
             <div class="form-container">
                 <form class="row g-3" method="POST" action="{{ route('product-detail.store', $product->id) }}" enctype="multipart/form-data">
                     @csrf
-
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <!-- Tên sản phẩm -->
                     <div class="col-12">
                         <div class="row">

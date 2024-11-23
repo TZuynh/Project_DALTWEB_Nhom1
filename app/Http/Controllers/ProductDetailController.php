@@ -28,15 +28,14 @@ class ProductDetailController extends Controller
     public function store(Request $request, $productId)
     {
         $request->validate([
-            'quantity' => 'required|integer|min:1',
+            'quality' => 'required|integer|min:1',
             'size_id' => 'required|exists:sizes,id',
             'color_id' => 'required|exists:colors,id',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     
         // Lấy sản phẩm theo ID
         $product = Product::findOrFail($productId);
-    
+
         // Lưu chi tiết sản phẩm
         $productDetail = new ProductDetail();
         $productDetail->product_id = $product->id;
@@ -66,7 +65,6 @@ class ProductDetailController extends Controller
         $product = Product::findOrFail($productId);
         // Eager load the product details to include the quantity field
         $dsDetail = $product->productDetails;
-    
         return view('product.details', compact('product', 'dsDetail'));
     }
 }

@@ -78,13 +78,13 @@
                                                
 
                                                     <td onclick="window.location.href = '{{ route('product.detail', ['id' => $product->id]) }}';">
-    @foreach ($product->productDetails as $detail)
-        @if ($detail->images->isNotEmpty())
-            <img src="{{ asset('img/add/' . $detail->images->first()->url) }}" alt="Hình ảnh sản phẩm" style="width: 100px; height: auto;">
-        @else
-            <span>Không có hình ảnh</span>
-        @endif
-    @endforeach
+                                                    @foreach ($product->images as $detail)
+                                                        @if ($detail)
+                                                            <img src="{{ asset('img/add/' . $detail->url) }}" alt="Hình ảnh sản phẩm" style="width: 100px; height: auto;">
+                                                        @else
+                                                            <span>Không có hình ảnh</span>
+                                                        @endif
+                                                    @endforeach
 
                                                     </td>
                                                     <td class="text-nowrap text-reset" onclick="window.location.href = '{{ route('product.detail', ['id' => $product->id]) }}';">
@@ -92,7 +92,7 @@
                                                     <td onclick="window.location.href = '{{ route('product.detail', ['id' => $product->id]) }}';">
                                                         <a href="#" class="text-reset">
                                                             <i data-feather="check" style="height: 18px; width: 18px;" class="me-1"></i>
-                                                            {{ $product->category_id }}
+                                                            {{ $product->category->name }}
                                                         </a>
                                                     </td>
                                                     <td class="text-nowrap text-reset" onclick="window.location.href = '{{ route('product.detail', ['id' => $product->id]) }}';">

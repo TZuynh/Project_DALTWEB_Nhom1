@@ -52,51 +52,10 @@
                     </div>
                 </div>
                 
-                @if ($productDetail)
-                    <!-- Hiển thị lựa chọn Size và Màu nếu có Product Detail -->
-                    <div class="row">
-                        <div class="col-md-8">
-                            <label for="size_id" class="form-label">Size sản phẩm</label>
-                            <select name="size_id" class="form-select" id="size_id">
-                                @foreach($sizes as $size)
-                                    <option value="{{ $size->id }}" {{ $productDetail->size_id == $size->id ? 'selected' : '' }}>{{ $size->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <label for="color_id" class="form-label">Màu sản phẩm</label>
-                            <select name="color_id" class="form-select" id="color_id">
-                                @foreach($colors as $color)
-                                    <option value="{{ $color->id }}" {{ $productDetail->color_id == $color->id ? 'selected' : '' }}>{{ $color->color_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                @else
+              
                     <!-- Nếu không có Product Detail, cho phép chọn tất cả Size và Màu -->
-                    <div class="row">
-                        <div class="col-md-8">
-                            <label for="size_id" class="form-label">Size sản phẩm</label>
-                            <select name="size_id" class="form-select" id="size_id">
-                                @foreach($sizes as $size)
-                                    <option value="{{ $size->id }}">{{ $size->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <label for="color_id" class="form-label">Màu sản phẩm</label>
-                            <select name="color_id" class="form-select" id="color_id">
-                                @foreach($colors as $color)
-                                    <option value="{{ $color->id }}">{{ $color->color_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                @endif
+                   
+               
                 
                 <div class="row">
                     <div class="col-md-8">
@@ -123,15 +82,12 @@
                     </div>
                 </div>
                 <div class="row">
-    <div class="col-md-8">
-        <label for="quality" class="form-label">Số lượng</label>
-        <input type="number" name="quality" class="form-control" id="quality" value="{{ $productDetail ? $productDetail->quality : '' }}" min="1">
-    </div>
+   
 </div>
 
 <div class="row">
     <div class="col-md-8">
-        <label for="description" class="form-label">Mô tả số lượng</label>
+        <label for="description" class="form-label">Mô tả </label>
         <textarea name="description" class="form-control" id="description">{{ $productDetail ? $productDetail->description : '' }}</textarea>
     </div>
 </div>

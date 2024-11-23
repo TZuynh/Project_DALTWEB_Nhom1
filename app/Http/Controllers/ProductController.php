@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index()
 {
     // Lấy danh sách sản phẩm kèm theo chi tiết và hình ảnh, mỗi trang hiển thị 10 mục
-    $dsProducts = Product::with('productDetails.images')->paginate(10);
+    $dsProducts = Product::with('images', 'category')->paginate(10);
     // Trả về view cùng dữ liệu
     return view('product.index', compact('dsProducts'));
 }
@@ -52,14 +52,13 @@ public function capNhat($id)
 public function xuLyCapNhat(Request $request, $id)
 {
     $request->validate([
-        'category_id' => 'required|integer|exists:categories,id',
+        'category_id' => 'required|exists:categories,id',
         'name' => 'required|string|max:255',
         'price' => 'required|numeric',
-        'description' => 'nullable|string',
-        'size_id' => 'required|integer|exists:sizes,id',
-        'color_id' => 'required|integer|exists:colors,id',
+        'description' => 'nullable|string|max:255',
+        // 'size_id' => 'required|exists:sizes,id',
+        // 'color_id' => 'required|exists:colors,id',
         'images' => 'nullable|array',
-        // 'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
     // Tìm sản phẩm theo id
@@ -74,19 +73,11 @@ public function xuLyCapNhat(Request $request, $id)
     ]);
 
     // Cập nhật hoặc tạo mới chi tiết sản phẩm
-    $productDetail = ProductDetail::updateOrCreate(
-        ['product_id' => $product->id],
-        [
-            'size_id' => $request->size_id,
-            'color_id' => $request->color_id,
-            'quality' => $request->quality ?? 1,
-            'status' => $request->status ?? 0,
-        ]
-    );
+   
 
     // Xử lý hình ảnh (nếu có)
     if ($request->hasFile('images')) {
-        ProductImage::where('product_id', $productDetail->id)->delete();
+        ProductImage::where('product_id', $id)->delete();
         foreach ($request->file('images') as $image) {
             $imageName = $image->getClientOriginalName();
             $image->storeAs('public/img/add', $imageName);
@@ -94,9 +85,7 @@ public function xuLyCapNhat(Request $request, $id)
 
             // Lưu URL của ảnh vào bảng images (sản phẩm chi tiết)
             ProductImage::create([
-                'product_id' => $productDetail->id,
-                'color_id' => $productDetail->color_id,
-
+                'product_id' => $id,
                 'url' => $imageName,
             ]);
         }
@@ -191,6 +180,7 @@ public function chiTiet($id)
 
     // Lấy danh sách chi tiết sản phẩm (sắp xếp theo size_id)
     $dsChiTietSP = ProductDetail::where('product_id', $id)
+        ->with('color', 'size')
         ->orderBy('size_id')
         ->get();
 
@@ -215,8 +205,8 @@ public function xuLyThemMoi(Request $request)
         'name' => 'required|string|max:255',
         'price' => 'required|numeric',
         'description' => 'nullable|string|max:255',
-        'size_id' => 'required|exists:sizes,id',
-        'color_id' => 'required|exists:colors,id',
+        // 'size_id' => 'required|exists:sizes,id',
+        // 'color_id' => 'required|exists:colors,id',
         'images' => 'nullable|array',
         // 'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
@@ -230,13 +220,13 @@ public function xuLyThemMoi(Request $request)
     $product->save();
 
     // Tạo mới chi tiết sản phẩm
-    $productDetail = new ProductDetail();
-    $productDetail->product_id = $product->id;
-    $productDetail->color_id = $request->color_id;
-    $productDetail->size_id = $request->size_id;
-    $productDetail->quality = $request->quality ?? 1; // Nếu không có quality, thì mặc định là 1
-    $productDetail->status = 0; // Trạng thái mặc định là 0
-    $productDetail->save();
+    // $productDetail = new ProductDetail();
+    // $productDetail->product_id = $product->id;
+    // $productDetail->color_id = $request->color_id;
+    // $productDetail->size_id = $request->size_id;
+    // $productDetail->quality = $request->quality ?? 1; // Nếu không có quality, thì mặc định là 1
+    // $productDetail->status = 0; // Trạng thái mặc định là 0
+    // $productDetail->save();
 
     // Lưu hình ảnh
     if ($request->hasFile('images')) {
@@ -244,8 +234,8 @@ public function xuLyThemMoi(Request $request)
             $imageName = $image->getClientOriginalName();
             $image->storeAs('public/img/add', $imageName);
             ProductImage::create([
-                'product_id' => $productDetail->id,
-                'color_id' => $productDetail->color_id,
+                'product_id' => $product->id,
+                'color_id' => null,
                 'url' => $imageName,
             ]);
         }
