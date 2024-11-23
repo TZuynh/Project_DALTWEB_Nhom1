@@ -94,12 +94,14 @@
                         </div>
 
 
-                        <div class="update-product">
-      <button class="update-button"> <a href="{{ route('product.update', ['id' => $product->id]) }}"> Cập nhật thông tin
-        </a> </button>
-        <div class="detail">
-      <button class="detail"> <a href="{{ route('detail.create', ['product' => $product->id]) }}"> Theem Chi Tiet
-        </a> </button>
+                        </div>
+                <div class="col-md-6 text-end">
+    <a href="{{ route('product.update', ['id' => $product->id]) }}" class="btn btn-primary" style="margin-bottom: 15px">
+        Cập nhật thông tin
+    </a>
+</div>
+                      
+      
 
         
     </div>

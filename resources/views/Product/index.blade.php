@@ -29,13 +29,20 @@
     
 </div>
 
+
         <form action="{{ route('product.search') }}" method="GET">
            
         <div id="key-table_filter" class="dataTables_filter">
     <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="key-table"  aria-label="Search" name="keyword">
 
 </label>
+
                 </div>
+                <div class="col-md-6 text-end">
+    <a href="{{ route('product.add') }}" class="btn btn-primary" style="margin-bottom: 15px">
+        Tạo Mới Sản Phẩm
+    </a>
+</div>
                
             </div>
         </form>
