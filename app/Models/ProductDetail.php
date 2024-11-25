@@ -29,9 +29,10 @@ class ProductDetail extends Model
      */
     public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
-
+   
+    
     /**
      * Relationship: A ProductDetail has many Sizes.
      *

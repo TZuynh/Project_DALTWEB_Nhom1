@@ -44,6 +44,9 @@ class ProductDetailController extends Controller
         $productDetail->quality = $request->quality;
         $productDetail->save();
     
+        $product->update([
+            'quality' => $product->quality + $productDetail->quality,
+        ]);
         // Lưu ảnh (nếu có)
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
@@ -55,7 +58,7 @@ class ProductDetailController extends Controller
                 ]);
             }
         }
-    
+            
     
         // Quay lại trang chi tiết sản phẩm với thông báo thành công
         return redirect()->route('product.detail', $product->id)->with('success', 'Thêm chi tiết sản phẩm thành công!');

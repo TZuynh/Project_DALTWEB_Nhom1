@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\Api\APICartController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
 });
+
+Route::get('/cart/{id}', [APICartController::class, 'getCartByIdCustomer']);
+Route::get('/Get-cart/{id}',[APICartController::class,'getCart']);
+
