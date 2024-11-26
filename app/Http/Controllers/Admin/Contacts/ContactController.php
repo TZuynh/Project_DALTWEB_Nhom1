@@ -9,10 +9,15 @@ use App\Models\Contact;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::paginate(10); // Lấy tất cả liên hệ
-        return view('admin.contacts.index', compact('contacts')); // Truyền dữ liệu tới view
+        if ($request->has('search')) {
+            $contacts = Contact::where('id', (int) $request->search)->paginate(5);
+        } else {
+            $contacts = Contact::paginate(5);
+        }
+        $allContacts = Contact::all(); // Lấy tất cả liên hệ
+        return view('admin.contacts.index', compact('contacts','allContacts')); // Truyền dữ liệu tới view
     }
 
     // Hiển thị form chỉnh sửa liên hệ
@@ -34,8 +39,8 @@ class ContactController extends Controller
         ]);
 
         // Cập nhật thông tin liên hệ
-        $contact = Contact::findOrFail($id);
-        $contact->update($request->only(['name', 'email', 'phone']));
+        $contacts = Contact::findOrFail($id);
+        $contacts->update($request->only(['name', 'email', 'phone']));
 
         return redirect()->route('admin.contacts.index')->with('success', 'Liên hệ đã được cập nhật!');
     }
@@ -45,10 +50,10 @@ class ContactController extends Controller
     {
         try {
             // Tìm liên hệ theo ID
-            $contact = Contact::findOrFail($id);
+            $contacts = Contact::findOrFail($id);
     
             // Xóa liên hệ
-            $contact->delete();
+            $contacts->delete();
     
             // Điều hướng về danh sách liên hệ kèm thông báo thành công
             return redirect()->route('admin.contacts.index')->with('success', 'Liên hệ đã được xóa!');
