@@ -22,7 +22,7 @@
                             <tbody>
                                 @foreach ($orders as $order)
                                 <tr>
-                                    <th class="text-center align-middle" scope="row">1</th>
+                                    <th class="text-center align-middle" scope="row">{{ $order->id }}</th>
 
                                     <td class="align-middle wrap">
                                         <ul class="m-0">
@@ -49,9 +49,9 @@
                                             </li>
                                             <li><strong>Trạng thái thanh toán:</strong>
                                                 @if($order->payment)
-                                                    {{ $order->payment->paymentMethod->id != 4 ? 'Đã thanh toán' : 'Chưa thanh toán' }}
+                                                {{ $order->payment->paymentMethod->id != 4 ? 'Đã thanh toán' : 'Chưa thanh toán' }}
                                                 @else
-                                                    Chưa thanh toán
+                                                Chưa thanh toán
                                                 @endif
                                             </li>
                                         </ul>
@@ -90,7 +90,7 @@
                                                 data-bs-toggle="modal" data-bs-target="#orderDetailModal"
                                                 data-order-id="{{ $order->id }}" data-order-details="{{ $orderdetails}}"
                                                 data-total-product-value="{{ $order->total_product_value }}"
-                                                data-delivery-charge="{{ $order->delivery_change }}"
+                                                data-delivery-charge="{{ $order->charge }}"
                                                 data-discount-id="{{ $order->voucher_id  }}"
                                                 data-discount="{{ $order->voucher->money_discount }}"
                                                 data-total-order-value="{{ $order->total_order_value }}">
@@ -221,13 +221,13 @@
             let discount = 0; // Mặc định là không giảm giá
 
             // Áp dụng giảm giá theo discountid
-            if (discountid === 1) {
+            if (discountid === 7) {
                 discount = 0
-            } else if (discountid === 2 && totalProductValue > 600000) {
+            } else if (discountid === 8 && totalProductValue > 600000) {
                 discount = totalProductValue * 0.1; // Giảm 10%
-            } else if (discountid === 3) {
+            } else if (discountid === 9) {
                 discount = 50000; // Giảm 50,000 VNĐ
-            } else if (discountid === 4) {
+            } else if (discountid === 10) {
                 discount = deliveryCharge; // Miễn phí vận chuyển
             }
 
