@@ -35,7 +35,7 @@ class DashboardController extends Controller
 
     public function edit()
     {
-        $settings = \App\Models\Footer::all()->pluck('value', 'content');
+        $settings = \App\Models\Footer::all()->pluck('title', 'content');
         return view('admin.dashboard.edit', compact('settings'));
     }
 
@@ -44,7 +44,7 @@ class DashboardController extends Controller
         $data = $request->except('_token', '_method');
 
         foreach ($data as $title => $value) {
-            \App\Models\Footer::updateOrCreate(['title' => $title], ['value' => $value]);
+            \App\Models\Footer::updateOrCreate(['title' => $title], ['content' => $value]);
         }
 
         return redirect()->back()->with('success', 'Cập nhật thông tin website thành công!');
