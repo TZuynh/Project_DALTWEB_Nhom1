@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-<<<<<<< Updated upstream
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/footer', [ApiFooterController::class, 'index']);
@@ -26,10 +25,3 @@ Route::get('/contacts', [ApiContactController::class, 'index']);
 Route::post('/contacts', [ApiContactController::class, 'store']);
 Route::get('/products', [ApiProductController::class, 'index']);
 
-=======
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-});
->>>>>>> Stashed changes
