@@ -32,8 +32,9 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/cart/{id}', [APICartController::class, 'getCartByIdCustomer']);
 Route::get('/Get-cart/{id}',[APICartController::class,'getCart']);
 Route::post('/edit-Cart',[APICartController::class,'editCartItem']);
-Route::delete('/delCart/{id}',[APICartController::class,'delCart']);
-
+Route::post('/delCart/{id}',[APICartController::class,'delCart']);
+Route::post('cart/add',[APICartController::class,'addCart']);
+Route::post('/cart/deleteAll',[APICartController::class,'destroyAll']);
 
 
 //api sản phẩm liên quan
