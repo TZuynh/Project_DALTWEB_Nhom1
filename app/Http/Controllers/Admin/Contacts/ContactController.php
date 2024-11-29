@@ -31,11 +31,13 @@ class ContactController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
+            'message' => 'nullable|string',
+            'subject' => 'nullable|string|max:255',
         ]);
 
         // Cập nhật thông tin liên hệ
         $contact = Contact::findOrFail($id);
-        $contact->update($request->only(['name', 'email', 'phone']));
+        $contact->update($request->only(['name', 'email', 'phone', 'message', 'subject']));
 
         return redirect()->route('admin.contacts.index')->with('success', 'Liên hệ đã được cập nhật!');
     }
@@ -46,10 +48,10 @@ class ContactController extends Controller
         try {
             // Tìm liên hệ theo ID
             $contact = Contact::findOrFail($id);
-    
+
             // Xóa liên hệ
             $contact->delete();
-    
+
             // Điều hướng về danh sách liên hệ kèm thông báo thành công
             return redirect()->route('admin.contacts.index')->with('success', 'Liên hệ đã được xóa!');
         } catch (\Exception $e) {
