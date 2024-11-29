@@ -72,8 +72,6 @@
                     </div>
                 </div>
             </div>
-
-
             <h4>Chỉnh sửa thông tin website</h4>
             @if(session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>

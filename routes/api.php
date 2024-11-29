@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\User\Api\ApiContactController;
+use App\Http\Controllers\User\Api\ApiFooterController;
+use App\Http\Controllers\User\Api\ApiProductController;
+use App\Http\Controllers\User\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Api\APILoginController;
@@ -11,19 +15,10 @@ use App\Http\Controllers\User\Api\APILoginController;
 |----------------------------------------------------------------------|
 */
 
-// Các route không yêu cầu xác thực (ví dụ đăng nhập, đăng ký người dùng)
-// Route đăng nhập API
-Route::get('/', function () {
-    return redirect('/login');
-});
-
-
-Route::middleware('auth:sanctum')->group(function () {
-    
-    
-    // Các route khác chỉ người dùng đăng nhập mới có thể truy cập (ví dụ: đổi mật khẩu, thông tin tài khoản, v.v.)
-    //Route::get('/user', [App\Http\Controllers\User\Api\APIUserController::class, 'getUserInfo']);  // Route lấy thông tin người dùng
-});
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/footer', [ApiFooterController::class, 'index']);
+Route::get('/contacts', [ApiContactController::class, 'index']);
+Route::post('/contacts', [ApiContactController::class, 'store']);
 Route::get('/products', [App\Http\Controllers\User\Api\APIProductController::class, 'index']);
-
 Route::get('/productdetail', [App\Http\Controllers\User\Api\APIProductDetailController::class, 'index']);

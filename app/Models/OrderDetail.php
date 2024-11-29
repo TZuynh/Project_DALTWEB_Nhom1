@@ -42,4 +42,9 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(ShipmentStatus::class);
     }
+
+    public function voucher()
+    {
+        return $this->belongsTo(Voucher::class);
+    }
 }
