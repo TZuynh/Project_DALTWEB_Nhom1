@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class APIProductController extends Controller
+class ApiProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class APIProductController extends Controller
     {
         // Lấy tất cả sản phẩm từ cơ sở dữ liệu
         $products = Product::all();
-        
+
         // Trả về danh sách sản phẩm dưới dạng JSON
         return response()->json($products, 200);
     }
@@ -47,7 +47,7 @@ class APIProductController extends Controller
     {
         // Tìm sản phẩm theo ID
         $product = Product::find($id);
-        
+
         // Nếu không tìm thấy sản phẩm, trả về lỗi 404
         if (!$product) {
             return response()->json(['message' => 'Product not found'], 404);
