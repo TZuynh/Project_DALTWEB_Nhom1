@@ -9,10 +9,15 @@ use App\Models\Contact;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::paginate(10); // Lấy tất cả liên hệ
-        return view('admin.contacts.index', compact('contacts')); // Truyền dữ liệu tới view
+        if ($request->has('search')) {
+            $contacts = Contact::where('id', (int) $request->search)->paginate(5);
+        } else {
+            $contacts = Contact::paginate(5);
+        }
+        $allContacts = Contact::all(); // Lấy tất cả liên hệ
+        return view('admin.contacts.index', compact('contacts','allContacts')); // Truyền dữ liệu tới view
     }
 
     // Hiển thị form chỉnh sửa liên hệ
