@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ProductDetail;
 use Illuminate\Http\Request;
 
-class ApiProductDetailController extends Controller
+class APIProductDetailController extends Controller
 {
     /**
      * Display a listing of the product details.
