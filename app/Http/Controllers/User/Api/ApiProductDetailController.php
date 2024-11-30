@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ProductDetail;
 use Illuminate\Http\Request;
 
-class ApiProductDetailController extends Controller
+class APIProductDetailController extends Controller
 {
     /**
      * Display a listing of the product details.
@@ -15,7 +15,7 @@ class ApiProductDetailController extends Controller
     {
         // Lấy tất cả chi tiết sản phẩm từ cơ sở dữ liệu
         $productDetails = ProductDetail::all();
-
+        
         // Trả về danh sách chi tiết sản phẩm dưới dạng JSON
         return response()->json($productDetails, 200);
     }
@@ -46,7 +46,7 @@ class ApiProductDetailController extends Controller
     {
         // Tìm chi tiết sản phẩm theo ID
         $productDetail = ProductDetail::find($id);
-
+        
         // Nếu không tìm thấy chi tiết sản phẩm, trả về lỗi 404
         if (!$productDetail) {
             return response()->json(['message' => 'Product detail not found'], 404);
