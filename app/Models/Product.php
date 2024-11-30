@@ -42,4 +42,10 @@ class Product extends Model
     {
         return $this->hasMany(ProductDetail::class);
     }
+
+    //phuoc
+    public function productImages()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id'); // 'product_id' is the foreign key in the 'product_images' table
+    }
 }
