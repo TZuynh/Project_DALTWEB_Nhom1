@@ -18,6 +18,7 @@ class OrderDetail extends Model
         'order_id',
         'product_detail_id',
         'shipment_status_id',
+        'voucher_id',
         'price',
         'quality',
         'total_value',

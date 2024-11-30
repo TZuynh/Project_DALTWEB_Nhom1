@@ -14,14 +14,17 @@ class Order extends Model
      *
      * @var array<int, string>
      */
+    // protected $table = 'order'; // Chỉ định tên bảng
+
     protected $fillable = [
         'user_id',
         'shipping_address_id',
         'shipment_status_id',
         'voucher_id',
         'total_product_value',
-        'change',
+        'charge',
         'total_order_value',
+        'txn_ref'
     ];
 
     /**
@@ -69,10 +72,10 @@ class Order extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-//     public function payments()
-//     {
-//         return $this->hasMany(Payment::class);
-//     }
+    //     public function payments()
+    //     {
+    //         return $this->hasMany(Payment::class);
+    //     }
 
     public function payment()
     {

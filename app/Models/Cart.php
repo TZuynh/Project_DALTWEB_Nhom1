@@ -30,4 +30,10 @@ class Cart extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    //phuoc
+    public function ProductDetail()
+    {
+        return $this->belongsTo(ProductDetail::class, 'product_detail_id', 'id');
+    }
 }
